@@ -1,0 +1,6 @@
+## cinclude '<util/delay.h>'
+
+global delay = 	@record{}
+
+function delay.ms(Sec : cint) <cimport '_delay_ms',nodecl> end
+function delay.us(Sec : cint) <cimport '_delay_us',nodecl> end

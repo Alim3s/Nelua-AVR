@@ -1,0 +1,54 @@
+## cinclude'<avr/io.h>'
+
+global DDRA: cint <cimport,nodecl>
+global DDRB: cint <cimport,nodecl>
+global DDRC: cint <cimport,nodecl>
+global DDRD: cint <cimport,nodecl>
+global DDRE: cint <cimport,nodecl>
+global DDRF: cint <cimport,nodecl>
+global DDRG: cint <cimport,nodecl>
+
+global PORTA: cint <cimport,nodecl>
+global PORTB: cint <cimport,nodecl>
+global PORTC: cint <cimport,nodecl>
+global PORTD: cint <cimport,nodecl>
+global PORTE: cint <cimport,nodecl>
+global PORTF: cint <cimport,nodecl>
+global PORTG: cint <cimport,nodecl>
+
+global PINA: cint <cimport,nodecl>	
+global PINB: cint <cimport,nodecl>
+global PINC: cint <cimport,nodecl>
+global PIND: cint <cimport,nodecl>
+global PINE: cint <cimport,nodecl>
+global PINF: cint <cimport,nodecl>
+global PING: cint <cimport,nodecl>
+
+--lol
+global function readPinA(pinNum : cint) : boolean
+	return PINA&(1<<pinNum)~=0
+end
+
+global function readPinB(pinNum : cint) : boolean
+	return PINB&(1<<pinNum)~=0
+end
+
+global function readPinC(pinNum : cint) : boolean
+	return PINC&(1<<pinNum)~=0
+end
+
+global function readPinD(pinNum : cint) : boolean
+	return PIND&(1<<pinNum)~=0
+end
+
+global function readPinE(pinNum : cint) : boolean
+	return PINE&(1<<pinNum)~=0
+end
+
+global function readPinF(pinNum : cint) : boolean
+	return PINF&(1<<pinNum)~=0
+end
+
+global function readPinG(pinNum : cint) : boolean
+	return PING&(1<<pinNum)~=0
+end

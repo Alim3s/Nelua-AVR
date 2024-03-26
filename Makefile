@@ -89,7 +89,7 @@ $(C_COMPILE):
 
 linking:
 	@echo Linking code...
-	$(CC) -o $(Code_Path).elf $(Code_Path).o -Wl,-Map=$(QTE)$(abspath $(Code_Path)).map$(QTE) -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mrelax -mmcu=$(TARGET) -B $(TARGETPACK)
+	$(CC) -o $(Code_Path).elf $(Code_Path).o -Wl,-Map=$(QTE)$(abspath $(Code_Path)).map$(QTE) -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mrelax -mmcu=$(TARGET)
 
 	$(OBJCOPY) -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  $(QTE)$(Code_Path).elf$(QTE) $(QTE)$(Code_Path).hex$(QTE)
 	$(OBJCOPY) -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex $(QTE)$(Code_Path).elf$(QTE) $(QTE)$(Code_Path).eep$(QTE) || exit 0

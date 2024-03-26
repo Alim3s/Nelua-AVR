@@ -1,0 +1,43 @@
+## cinclude'<avr/interrupt.h>'
+
+
+--timers/counters--
+global TCNT0: cint <cimport,nodecl> -- Timer 0 / 8 bits
+
+global TCNT1H: cint <cimport,nodecl> -- Timer 1 High Byte
+global TCNT1L: cint <cimport,nodecl> -- Timer 1 Low Byte / total 16 bits
+
+global TCNT2: cint <cimport,nodecl> -- Timer 2 / 8 bits
+
+global TCNT3H: cint <cimport,nodecl> -- Timer 3 High Byte
+global TCNT3L: cint <cimport,nodecl> -- Timer 3 Low Byte / total 16 bits
+
+--Timer/Counter Control Register(TCCR)--
+global TCCR0: cint <cimport,nodecl> -- Timer 0 - TCCR
+
+global TCCR1H: cint <cimport,nodecl> -- Timer 1 - TCCR // High Byte
+global TCCR1L: cint <cimport,nodecl> -- Timer 1 - TCCR // Low Byte
+
+global TCCR2: cint <cimport,nodecl>  -- Timer 2 - TCCR
+
+global TCCR3H: cint <cimport,nodecl> -- Timer 1 - TCCR // High Byte
+global TCCR3L: cint <cimport,nodecl> -- Timer 1 - TCCR // Low Byte
+
+--Output Compare Registers(OCR)--
+global OCR0: cint <cimport,nodecl> -- Timer 0 - OCR / 8 bits
+
+global OCR1H: cint <cimport,nodecl> -- Timer 1 - OCR High Byte
+global OCR1L: cint <cimport,nodecl> -- Timer 1 - OCR Low Byte / total 16 bits
+
+global OCR2: cint <cimport,nodecl> -- Timer 2 - OCR / 8 bits
+
+global OCR3H: cint <cimport,nodecl> -- Timer 3 - OCR High Byte
+global OCR3L: cint <cimport,nodecl> -- Timer 3 - OCR Low Byte / total 16 bits
+
+--Input Capture Register(ICR)--
+global ICR1H: cint -- Timer 3 - ICR --High
+global ICR1L: cint -- Timer 3 - ICR --Low / total 16 bits
+
+global ICR3H: cint -- Timer 3 - ICR --High
+global ICR3L: cint -- Timer 3 - ICR --Low / total 16 bits
+

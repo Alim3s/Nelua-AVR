@@ -17,4 +17,4 @@ it will be made automatically
 EX) Build_Dir=./build  
     
 TARGET : Select microcontroller  
-EX) TARGET=atmega128A  
+EX) TARGET=atmega128  

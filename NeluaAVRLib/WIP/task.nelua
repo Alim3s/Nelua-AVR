@@ -1,0 +1,30 @@
+require 'delay'
+require 'coroutine'
+
+local ___TimerIndex___ : integer = 0
+
+global task = @record{}
+
+
+
+function task.wait(sec : cint)
+	if ___CurenntThread___ == nilptr then --main routine
+		for i = 1,sec do
+			for n,coro in ipairs(___ALLthreadLIST___) do
+				if coro.Status ~= ThreadState.suspended
+				coroutine.resume(coro)
+			end
+			delay.ms(1)
+	else
+		delaythread(___CurenntThread___)
+	end
+end
+
+local function delaythread(thrP : *thread, sec : cint) : void
+	thrP.YieldTime=sec
+	if ___CurenntThread___ == nilptr then return end
+	thrP.Status = state.yielded
+	if setjmp(thrP.jumpBUF) ~= 1 then
+		longjmp(main_routine,1)
+	end
+end

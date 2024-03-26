@@ -1,0 +1,67 @@
+require 'setjmp'
+require 'memory'
+require 'allocators.default'
+require 'sequence'
+require 'enumlist'
+
+--for avr--
+
+global coroutine = 	@record{}
+
+local thread = @record{Status : integer, Func : function(), YieldTime : integer,jumpBUF : jmp_buf}
+
+--global ___ResumedThreadLIST___ : sequence(*thread) = {}
+global ___ALLThreadLIST___ : sequence(*thread) = {}
+global ___CurenntThread___ : *thread = nilptr
+
+local main_routine : jmp_buf
+
+function coroutine.new(Func : function(),loop : boolean) : *thread
+	local newThread : *thread = default_allocator:new(@thread)
+	newThread.Status = ThreadState.suspended
+	newThread.Func = Func
+	newThread.YieldTime = 0
+	newThread.loop = loop or false
+	___ALLThreadLIST___:push(newThread)
+	return newThread
+end
+
+function coroutine.resume(thrP : *thread) : boolean
+	if thrP.Status == ThreadState.yielded and thrP.YieldTime <= 0 then thrP.Status = ThreadState.running end
+	if thrP.Status == ThreadState.yielded or thrP.Status == ThreadState.dead then return false end
+	if thrP.Status == ThreadState.suspended then
+		___CurenntThread___ = thrP
+		thrP.Status = ThreadState.running
+		if setjmp(main_routine) ~= 1 then
+			thrP.Func()
+			thrP.Status = ThreadState.suspended
+		else
+			___CurenntThread___ = nilptr
+		end
+	end
+	if thrP.Status == ThreadState.running then
+		___CurenntThread___ = thrP
+		if setjmp(main_routine) ~= 1 then
+			longjmp(thrP.jumpBUF,1)
+		else
+			___CurenntThread___ = nilptr
+		end
+	end
+	return true
+end
+
+function coroutine.status(thrP : *thread) : integer
+	return thrP.Status
+end
+
+function coroutine.yield(thrP : *thread) : void
+	--thrP.Status = ThreadState.yielded
+	if ___CurenntThread___ == nilptr then return end
+	thrP.Status = ThreadState.suspended
+	if setjmp(thrP.jumpBUF) ~= 1 then
+		longjmp(main_routine,1)
+	end
+end
+
+
+--return coroutine

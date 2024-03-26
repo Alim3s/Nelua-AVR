@@ -1,0 +1,14 @@
+## cinclude'<setjmp.h>'
+--AVR --ATMEGA128A
+
+--local __JMP_BUF_SIZE : cint <comptime> = 9 -- attiny
+local __JMP_BUF_SIZE : cint <comptime> = 23 --fix this if there is problem
+
+--[=[##[==[ cemit [[
+	__JMP_BUF_SIZE=_JBLEN;
+]] ]==]]=]
+
+global jmp_buf : type = @[__JMP_BUF_SIZE]cuchar
+
+global function setjmp(buf : jmp_buf) <cimport,nodecl> end
+global function longjmp(buf : jmp_buf, returnValue: cint) <cimport,nodecl> end

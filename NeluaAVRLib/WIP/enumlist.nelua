@@ -1,0 +1,6 @@
+global ThreadState = @enum{
+	suspended = 0, --not running or yielded by coroutine yil
+	running = 1, --isnt this kinda useless?
+	yielded = 2, --yielded by task.wait
+	dead = -1
+}

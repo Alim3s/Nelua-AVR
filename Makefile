@@ -20,7 +20,7 @@ Build_Dir?=./build
 TARGET?=atmega128a #currently only atmega is supported
 ####################
 
-nelua:=$(abspath ./NeluaLang/nelua.bat)
+nelua:=$(abspath ./NeluaLang/nelua-lua.exe) -lnelua nelua.lua
 
 
 QTE:="#QTE

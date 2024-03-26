@@ -3,11 +3,11 @@ Work In Process
 
 Currently, this code only supports Windows and ATmega
 
-How to use :
+## How to use :
 
 `make build Source=YOUR_SRC_PATH Build_Dir=YOUR_BUILD_DIRECTORY TARGET=atmegaXXX`  
   
-Arguments :  
+## Arguments :  
   
 Source : Path to your C or Nelua source code  
 EX) Source=./main.nelua  
@@ -18,3 +18,7 @@ EX) Build_Dir=./build
     
 TARGET : Select microcontroller  
 EX) TARGET=atmega128  
+
+## About Nelua  
+check this site!  
+https://nelua.io/
